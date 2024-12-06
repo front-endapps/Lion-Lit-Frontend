@@ -9,7 +9,8 @@
     "analyze": "cem analyze --litelement",
     "start": "web-dev-server",
     "test": "web-test-runner",
-  "build": "esbuild src/lion-app.js --bundle --outdir=dist --minify --sourcemap --format=esm && node copy-files.js"
+    "build": "esbuild src/lion-app.js --bundle --outdir=dist --minify --sourcemap --format=esm && node copy-files.js"
+
   },
   "dependencies": {
     "@lion/button": "^0.18.1",
