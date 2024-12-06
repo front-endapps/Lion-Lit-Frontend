@@ -1,6 +1,23 @@
-// copy-files.js
-import fs from 'fs-extra';
+import fs from 'fs/promises';  // Folosește 'fs/promises' pentru a lucra cu Promises
+import path from 'path';
 
-// Copiază index.html în dist
-fs.copySync('index.html', 'dist/index.html');
-console.log('index.html copied to dist');
+const indexPath = path.join(process.cwd(), 'dist', 'index.html');
+
+async function updateIndexHtml() {
+  try {
+    const data = await fs.readFile(indexPath, 'utf8');
+
+    const updatedData = data.replace(
+      /<script type="module" src="\.\/src\/lion-app.js"><\/script>/,
+      '<script type="module" src="lion-app.js"></script>'
+    );
+  
+    await fs.writeFile(indexPath, updatedData, 'utf8');
+    console.log('Fișierul index.html a fost actualizat cu succes!');
+  } catch (err) {
+    console.error('Eroare la procesarea fișierului index.html:', err);
+  }
+}
+
+
+updateIndexHtml();
