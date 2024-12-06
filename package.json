@@ -8,7 +8,9 @@
   "scripts": {
     "analyze": "cem analyze --litelement",
     "start": "web-dev-server",
-    "test": "web-test-runner"
+    "test": "web-test-runner",
+    "build": "esbuild src/lion-app.js --bundle --outdir=dist --minify --sourcemap --format=esm && copy index.html dist\\index.html",
+    "serve:build": "http-server dist -c-1"
   },
   "dependencies": {
     "@lion/button": "^0.18.1",
@@ -26,7 +28,13 @@
     "@open-wc/testing": "^4.0.0",
     "@web/dev-server": "^0.4.6",
     "@web/test-runner": "^0.19.0",
-    "@web/test-runner-playwright": "^0.11.0"
+    "@web/test-runner-playwright": "^0.11.0",
+    "esbuild": "^0.24.0",
+    "html-webpack-plugin": "^5.6.3",
+    "http-server": "^14.1.1",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.1.0"
   },
   "customElements": "custom-elements.json"
 }
