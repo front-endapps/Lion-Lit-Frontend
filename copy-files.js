@@ -1,30 +1,27 @@
-import fs from 'fs/promises';  // Folosește 'fs/promises' pentru a lucra cu Promises
+import fs from 'fs/promises';  // Folosim 'fs/promises' pentru a lucra cu Promises
 import path from 'path';
 
+// Definirea căii către fișierul index.html din dist/
 const indexPath = path.join(process.cwd(), 'dist', 'index.html');
 
-// Verifică dacă fișierul există înainte de a-l modifica
 async function updateIndexHtml() {
   try {
-    // Verifică dacă fișierul există
-    await fs.access(indexPath);
-
+    // Citirea conținutului fișierului index.html
     const data = await fs.readFile(indexPath, 'utf8');
 
+    // Modificarea liniei scriptului pentru a folosi calea corectă
     const updatedData = data.replace(
       /<script type="module" src="\.\/src\/lion-app.js"><\/script>/,
       '<script type="module" src="lion-app.js"></script>'
     );
-  
+
+    // Scrierea fișierului modificat înapoi în dist/
     await fs.writeFile(indexPath, updatedData, 'utf8');
     console.log('Fișierul index.html a fost actualizat cu succes!');
   } catch (err) {
-    if (err.code === 'ENOENT') {
-      console.error('Fișierul index.html nu a fost găsit în dist!');
-    } else {
-      console.error('Eroare la procesarea fișierului index.html:', err);
-    }
+    console.error('Eroare la procesarea fișierului index.html:', err);
   }
 }
 
+// Apelarea funcției pentru a actualiza index.html
 updateIndexHtml();
