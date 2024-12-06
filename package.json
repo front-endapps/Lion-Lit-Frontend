@@ -10,7 +10,9 @@
     "start": "web-dev-server",
     "test": "web-test-runner",
     "build": "esbuild src/lion-app.js --bundle --outdir=dist --minify --sourcemap --format=esm && copy index.html dist\\index.html",
-    "serve:build": "http-server dist -c-1"
+    "serve:build": "http-server dist -c-1",
+    "deploy": "npm run build && vercel --prod"
+
   },
   "dependencies": {
     "@lion/button": "^0.18.1",
