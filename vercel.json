@@ -1,7 +1,7 @@
 {
     "builds": [
       {
-        "src": "dist/lion-app.js",
+        "src": "dist/**",
         "use": "@vercel/static"
       }
     ],
