@@ -19,5 +19,4 @@ async function updateIndexHtml() {
   }
 }
 
-
 updateIndexHtml();
